@@ -31,4 +31,18 @@ public record Report(int total, int invalid, int unknownLabels,
 
         return new Report(events.size(), invalid, unknown, overlaps, counts);
     }
+
+    public String format() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Total events: ").append(total).append("\n");
+        sb.append("Invalid times: ").append(invalid).append("\n");
+        sb.append("Unknown labels: ").append(unknownLabels).append("\n");
+        sb.append("Overlapping pairs: ").append(overlappingPairs).append("\n");
+        sb.append("Events per label:\n");
+        for (Map.Entry<String, Integer> entry : countsPerLabel.entrySet()) {
+            sb.append("  ").append(entry.getKey()).append(": ")
+                    .append(entry.getValue()).append("\n");
+        }
+        return sb.toString();
+    }
 }

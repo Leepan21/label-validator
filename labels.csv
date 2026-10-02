@@ -1,0 +1,7 @@
+file,start,end,label
+rec1.wav,1.0,3.0,door_open
+rec1.wav,2.0,4.0,door_open
+rec1.wav,5.0,4.0,footsteps
+rec2.wav,0.0,1.5,microwave
+rec2.wav,2.0,3.0,dog_bark
+rec3.wav,0.5,2.0,running_water

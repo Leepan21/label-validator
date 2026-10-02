@@ -34,4 +34,13 @@ class ReportTest {
         assertEquals(0, report.overlappingPairs());
         assertTrue(report.countsPerLabel().isEmpty());
     }
+    @Test
+    void formatShowsTotalsAndLabels() {
+        Report report = Report.from(List.of(
+                new Event("rec1.wav", 1.0, 2.0, "door_open")
+        ));
+        String text = report.format();
+        assertTrue(text.contains("Total events: 1"));
+        assertTrue(text.contains("door_open: 1"));
+    }
 }
