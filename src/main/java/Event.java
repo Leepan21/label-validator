@@ -4,6 +4,10 @@ public record Event(String file, double start, double end, String label) {
         return start >= 0 && end > start;
     }
 
+    public boolean hasKnownLabel() {
+        return Labels.ALLOWED.contains(label);
+    }
+
     public static Event fromCsvLine(String line) {
         String[] parts = line.split(",");
         return new Event(

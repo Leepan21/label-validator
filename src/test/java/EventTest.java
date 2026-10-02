@@ -28,4 +28,15 @@ class EventTest {
         assertEquals(2.5, e.end());
         assertEquals("door_open", e.label());
     }
+    @Test
+    void knownLabelIsAccepted() {
+        Event e = new Event("rec1.wav", 1.0, 2.0, "door_open");
+        assertTrue(e.hasKnownLabel());
+    }
+
+    @Test
+    void unknownLabelIsRejected() {
+        Event e = new Event("rec1.wav", 1.0, 2.0, "dog_bark");
+        assertFalse(e.hasKnownLabel());
+    }
 }
