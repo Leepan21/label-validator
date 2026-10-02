@@ -14,4 +14,10 @@ class EventTest {
         Event e = new Event("rec1.wav", 3.0, 2.0, "door_open");
         assertFalse(e.isValid());
     }
+
+    @Test
+    void invalidWhenStartIsNegative() {
+        Event e = new Event("rec1.wav", -1.0, 2.0, "door_open");
+        assertFalse(e.isValid());
+    }
 }
