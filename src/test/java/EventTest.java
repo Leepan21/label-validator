@@ -39,4 +39,31 @@ class EventTest {
         Event e = new Event("rec1.wav", 1.0, 2.0, "dog_bark");
         assertFalse(e.hasKnownLabel());
     }
+    @Test
+    void overlappingEventsAreDetected() {
+        Event a = new Event("rec1.wav", 1.0, 3.0, "door_open");
+        Event b = new Event("rec1.wav", 2.0, 4.0, "door_open");
+        assertTrue(a.overlaps(b));
+    }
+
+    @Test
+    void touchingEventsDoNotOverlap() {
+        Event a = new Event("rec1.wav", 1.0, 2.0, "door_open");
+        Event b = new Event("rec1.wav", 2.0, 3.0, "door_open");
+        assertFalse(a.overlaps(b));
+    }
+
+    @Test
+    void differentFilesDoNotOverlap() {
+        Event a = new Event("rec1.wav", 1.0, 3.0, "door_open");
+        Event b = new Event("rec2.wav", 2.0, 4.0, "door_open");
+        assertFalse(a.overlaps(b));
+    }
+
+    @Test
+    void differentLabelsDoNotOverlap() {
+        Event a = new Event("rec1.wav", 1.0, 3.0, "door_open");
+        Event b = new Event("rec1.wav", 2.0, 4.0, "footsteps");
+        assertFalse(a.overlaps(b));
+    }
 }

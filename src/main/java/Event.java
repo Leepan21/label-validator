@@ -8,6 +8,13 @@ public record Event(String file, double start, double end, String label) {
         return Labels.ALLOWED.contains(label);
     }
 
+    public boolean overlaps(Event other) {
+        return file.equals(other.file)
+                && label.equals(other.label)
+                && start < other.end
+                && other.start < end;
+    }
+
     public static Event fromCsvLine(String line) {
         String[] parts = line.split(",");
         return new Event(
